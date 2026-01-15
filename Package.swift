@@ -18,8 +18,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-kernel-primitives.git", from: "0.0.1"),
-        .package(url: "https://github.com/swift-primitives/swift-test-primitives.git", from: "0.0.1"),
+        .package(path: "../swift-kernel-primitives"),
+        .package(path: "../swift-test-primitives"),
     ],
     targets: [
         .target(
@@ -45,6 +45,7 @@ for target in package.targets where ![.system, .binary, .plugin].contains(target
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .strictMemorySafety(),
     ]
     target.swiftSettings = (target.swiftSettings ?? []) + settings
 }
