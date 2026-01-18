@@ -62,7 +62,7 @@ extension Terminal.Error {
 }
 
 extension Terminal.Error: CustomStringConvertible {
-    public var description: String {
+    public var description: Swift.String {
         switch underlying {
         case .kernel(let error):
             return "Terminal.\(operation): \(error)"
