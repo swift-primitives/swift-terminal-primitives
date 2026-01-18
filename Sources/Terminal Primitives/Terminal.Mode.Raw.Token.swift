@@ -17,39 +17,30 @@ extension Terminal.Mode.Raw {
     /// This is a move-only type that ensures the previous terminal mode
     /// is restored either explicitly via ``restore()`` or automatically on deinit.
     public struct Token: ~Copyable, Sendable {
-        private let stream: Terminal.Stream
-        private let previous: Previous
-        private var restored: Bool = false
+        /// The stream this token is for.
+        public let stream: Terminal.Stream
+        /// The previous terminal state (platform-specific).
+        public let previous: Previous
+        /// Whether the mode has been restored.
+        public var restored: Bool = false
 
-        internal init(stream: Terminal.Stream, previous: Previous) {
+        /// Creates a token with the given stream and previous state.
+        public init(stream: Terminal.Stream, previous: Previous) {
             self.stream = stream
             self.previous = previous
         }
 
-        /// Restore the previous terminal mode.
-        ///
-        /// - Throws: ``Terminal.Error`` if restoration fails
-        public mutating func restore() throws(Terminal.Error) {
-            guard !restored else { return }
-            try Terminal.Backend.exitRaw(stream: stream, previous: previous)
-            restored = true
-        }
+        // Note: `restore()` method is provided via extension in swift-iso-9945 (POSIX)
+        // or swift-windows-primitives (Windows)
 
-        deinit {
-            guard !restored else { return }
-            // Best-effort restore on deinit
-            do {
-                try Terminal.Backend.exitRaw(stream: stream, previous: previous)
-            } catch {
-                // Silently ignore errors during deinit
-            }
-        }
+        // Note: deinit restoration is handled by the platform layer via
+        // Terminal.Mode.Raw.Token._restoreOnDeinit(stream:previous:)
     }
 }
 
 extension Terminal.Mode.Raw.Token {
     /// Previous terminal state (platform-specific).
-    internal enum Previous: Sendable {
+    public enum Previous: Sendable {
         #if !os(Windows)
         case posix(Kernel.Termios.Attributes)
         #endif

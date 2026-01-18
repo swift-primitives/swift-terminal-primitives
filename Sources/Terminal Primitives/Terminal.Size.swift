@@ -26,13 +26,5 @@ extension Terminal {
     }
 }
 
-extension Terminal.Size {
-    /// Query terminal dimensions.
-    ///
-    /// - Parameter stream: Stream to query (default: stdout)
-    /// - Returns: Terminal size in rows and columns
-    /// - Throws: ``Terminal.Error`` if query fails
-    public static func query(stream: Terminal.Stream = .stdout) throws(Terminal.Error) -> Self {
-        try Terminal.Backend.size(stream: stream)
-    }
-}
+// Note: `query(stream:)` method is provided via extension in swift-iso-9945 (POSIX)
+// or swift-windows-primitives (Windows)
