@@ -26,7 +26,13 @@ let package = Package(
             dependencies: [
                 .product(name: "Kernel Primitives", package: "swift-kernel-primitives")
             ]
-        )
+        ),
+        .testTarget(
+            name: "Terminal Primitives Tests",
+            dependencies: [
+                "Terminal Primitives",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -37,6 +43,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),
