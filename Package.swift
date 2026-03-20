@@ -20,6 +20,10 @@ let package = Package(
             name: "Terminal Input Primitives",
             targets: ["Terminal Input Primitives"]
         ),
+        .library(
+            name: "Terminal Primitives Test Support",
+            targets: ["Terminal Primitives Test Support"]
+        ),
     ],
     dependencies: [
         .package(path: "../swift-kernel-primitives"),
@@ -52,6 +56,17 @@ let package = Package(
             dependencies: [
                 "Terminal Input Primitives",
             ]
+        ),
+
+        // MARK: - Test Support
+        .target(
+            name: "Terminal Primitives Test Support",
+            dependencies: [
+                "Terminal Primitives",
+                .product(name: "Kernel Primitives Test Support", package: "swift-kernel-primitives"),
+                .product(name: "Input Primitives Test Support", package: "swift-input-primitives"),
+            ],
+            path: "Tests/Support"
         ),
     ],
     swiftLanguageModes: [.v6]
