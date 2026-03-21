@@ -17,6 +17,10 @@ let package = Package(
             targets: ["Terminal Primitives"]
         ),
         .library(
+            name: "Terminal Primitives Core",
+            targets: ["Terminal Primitives Core"]
+        ),
+        .library(
             name: "Terminal Input Primitives",
             targets: ["Terminal Input Primitives"]
         ),
@@ -31,24 +35,37 @@ let package = Package(
         .package(path: "../swift-ascii-primitives"),
     ],
     targets: [
+        // MARK: - Core
         .target(
-            name: "Terminal Primitives",
+            name: "Terminal Primitives Core",
             dependencies: [
                 .product(name: "Kernel Primitives", package: "swift-kernel-primitives")
             ]
         ),
+
+        // MARK: - Input
         .target(
             name: "Terminal Input Primitives",
             dependencies: [
-                "Terminal Primitives",
+                "Terminal Primitives Core",
                 .product(name: "Input Primitives", package: "swift-input-primitives"),
                 .product(name: "ASCII Primitives", package: "swift-ascii-primitives"),
+            ]
+        ),
+
+        // MARK: - Umbrella
+        .target(
+            name: "Terminal Primitives",
+            dependencies: [
+                "Terminal Primitives Core",
+                "Terminal Input Primitives",
             ]
         ),
         .testTarget(
             name: "Terminal Primitives Tests",
             dependencies: [
                 "Terminal Primitives",
+                "Terminal Primitives Core",
             ]
         ),
         .testTarget(

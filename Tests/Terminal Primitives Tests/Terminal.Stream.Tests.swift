@@ -10,7 +10,7 @@
 // ===----------------------------------------------------------------------===//
 
 import Testing
-@testable import Terminal_Primitives
+@testable import Terminal_Primitives_Core
 
 @Suite("Terminal.Stream Tests")
 struct StreamTests {

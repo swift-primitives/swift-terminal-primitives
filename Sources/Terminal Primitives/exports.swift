@@ -9,4 +9,5 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Kernel_Primitives
+@_exported public import Terminal_Primitives_Core
+@_exported public import Terminal_Input_Primitives
