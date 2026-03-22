@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Kernel_Primitives
+internal import Kernel_Primitives
 
 extension Terminal {
     /// Standard I/O streams.
