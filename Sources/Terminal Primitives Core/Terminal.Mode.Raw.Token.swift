@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Kernel_Primitives
+public import Kernel_Terminal_Primitives
 
 extension Terminal.Mode.Raw {
     /// Token for restoring terminal mode after entering raw mode.
