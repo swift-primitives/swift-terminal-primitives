@@ -155,7 +155,7 @@ extension Terminal.Input.Parser {
         }
     }
 
-    @inline(__always)
+    @inline(always)
     private static func pushParam(
         _ value: UInt32,
         p0: inout UInt32,
@@ -181,7 +181,7 @@ extension Terminal.Input.Parser {
     ///
     /// CSI encoding: `encoded = 1 + modifier_bits`.
     /// A value of 0 or 1 means no modifiers.
-    @inline(__always)
+    @inline(always)
     static func modifiersFromCSI(_ param: UInt32) -> Terminal.Input.Key.Modifiers {
         guard param > 1 else { return [] }
         return Terminal.Input.Key.Modifiers(rawValue: UInt8(truncatingIfNeeded: param &- 1))

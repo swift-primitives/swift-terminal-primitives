@@ -149,7 +149,7 @@ extension Terminal.Input.Parser {
 extension Terminal.Input.Parser {
 
     /// Consumes one byte, converting stream exhaustion to `.incompleteSequence`.
-    @inline(__always)
+    @inline(always)
     static func consume<Storage>(
         _ input: inout Input.Buffer<Storage>
     ) throws(Error) -> UInt8
@@ -165,7 +165,7 @@ extension Terminal.Input.Parser {
     }
 
     /// Consumes one byte without checking. Caller guarantees `!input.isEmpty`.
-    @inline(__always)
+    @inline(always)
     @discardableResult
     static func consumeUnchecked<Storage>(
         _ input: inout Input.Buffer<Storage>
