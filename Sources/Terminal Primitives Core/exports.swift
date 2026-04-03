@@ -9,4 +9,5 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Kernel_Primitives
+@_exported public import Kernel_Terminal_Primitives
+@_exported public import Kernel_Error_Primitives

@@ -9,7 +9,8 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Kernel_Primitives
+public import Kernel_Error_Primitives
+public import Kernel_Terminal_Primitives
 
 extension Terminal {
     /// Terminal operation error.

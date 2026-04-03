@@ -39,7 +39,8 @@ let package = Package(
         .target(
             name: "Terminal Primitives Core",
             dependencies: [
-                .product(name: "Kernel Primitives", package: "swift-kernel-primitives")
+                .product(name: "Kernel Terminal Primitives", package: "swift-kernel-primitives"),
+                .product(name: "Kernel Error Primitives", package: "swift-kernel-primitives"),
             ]
         ),
 
