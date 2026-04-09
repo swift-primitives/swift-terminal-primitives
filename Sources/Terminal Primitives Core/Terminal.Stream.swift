@@ -27,16 +27,3 @@ extension Terminal {
         case stderr = 2
     }
 }
-
-#if os(Windows)
-extension Terminal.Stream {
-    /// Windows console handle for this stream.
-    internal var windowsHandle: Kernel.Console.Handle {
-        switch self {
-        case .stdin: return .stdin
-        case .stdout: return .stdout
-        case .stderr: return .stderr
-        }
-    }
-}
-#endif

@@ -17,7 +17,7 @@
 /// - ``Mode`` - Terminal mode control (raw/cooked)
 ///
 /// These compose over ``Kernel.TTY`` and ``Kernel.Termios`` (POSIX) or
-/// ``Kernel.Console`` (Windows) without exposing platform-specific APIs
+/// Windows Console API (via `swift-windows-primitives`) without exposing platform-specific APIs
 /// to callers.
 ///
 /// ## Example

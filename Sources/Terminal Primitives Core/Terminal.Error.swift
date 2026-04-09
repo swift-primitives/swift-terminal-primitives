@@ -10,7 +10,6 @@
 // ===----------------------------------------------------------------------===//
 
 public import Kernel_Error_Primitives
-public import Kernel_Terminal_Primitives
 
 extension Terminal {
     /// Terminal operation error.
@@ -54,8 +53,8 @@ extension Terminal.Error {
         /// Kernel-level error.
         case kernel(Kernel.Error)
 
-        /// Windows console error.
-        case console(Kernel.Console.Error)
+        /// Platform-specific error (e.g., Windows Console API failure).
+        case platform(Kernel.Error)
 
         /// Operation not supported on this platform.
         case unsupported
@@ -67,7 +66,7 @@ extension Terminal.Error: CustomStringConvertible {
         switch underlying {
         case .kernel(let error):
             return "Terminal.\(operation): \(error)"
-        case .console(let error):
+        case .platform(let error):
             return "Terminal.\(operation): \(error)"
         case .unsupported:
             return "Terminal.\(operation): not supported on this platform"
