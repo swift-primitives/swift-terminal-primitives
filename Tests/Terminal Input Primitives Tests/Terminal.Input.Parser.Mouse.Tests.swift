@@ -17,8 +17,8 @@ import Terminal_Input_Primitives
 @Suite("Parser — SGR Mouse")
 struct SGRMouseTests {
 
-    @Test("Left press at (10, 20): ESC [ < 0 ; 10 ; 20 M")
-    func leftPress() throws {
+    @Test
+    func `Left press at (10, 20): ESC [ < 0 ; 10 ; 20 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,              // ESC [ <
             0x30, 0x3B,                      // 0 ;
@@ -29,8 +29,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .press(.left), column: 10, row: 20)))
     }
 
-    @Test("Left release at (10, 20): ESC [ < 0 ; 10 ; 20 m")
-    func leftRelease() throws {
+    @Test
+    func `Left release at (10, 20): ESC [ < 0 ; 10 ; 20 m`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x30, 0x3B,
@@ -41,8 +41,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .release(.left), column: 10, row: 20)))
     }
 
-    @Test("Middle press: ESC [ < 1 ; 5 ; 5 M")
-    func middlePress() throws {
+    @Test
+    func `Middle press: ESC [ < 1 ; 5 ; 5 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x31, 0x3B,
@@ -53,8 +53,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .press(.middle), column: 5, row: 5)))
     }
 
-    @Test("Right press: ESC [ < 2 ; 1 ; 1 M")
-    func rightPress() throws {
+    @Test
+    func `Right press: ESC [ < 2 ; 1 ; 1 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x32, 0x3B,
@@ -65,8 +65,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .press(.right), column: 1, row: 1)))
     }
 
-    @Test("Scroll up: ESC [ < 64 ; 1 ; 1 M")
-    func scrollUp() throws {
+    @Test
+    func `Scroll up: ESC [ < 64 ; 1 ; 1 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x36, 0x34, 0x3B,               // 64 ;
@@ -77,8 +77,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .scrollUp, column: 1, row: 1)))
     }
 
-    @Test("Scroll down: ESC [ < 65 ; 1 ; 1 M")
-    func scrollDown() throws {
+    @Test
+    func `Scroll down: ESC [ < 65 ; 1 ; 1 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x36, 0x35, 0x3B,               // 65 ;
@@ -89,8 +89,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .scrollDown, column: 1, row: 1)))
     }
 
-    @Test("Left drag: ESC [ < 32 ; 10 ; 20 M")
-    func leftDrag() throws {
+    @Test
+    func `Left drag: ESC [ < 32 ; 10 ; 20 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x33, 0x32, 0x3B,               // 32 ;
@@ -101,8 +101,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .drag(.left), column: 10, row: 20)))
     }
 
-    @Test("Mouse move: ESC [ < 35 ; 10 ; 20 M")
-    func mouseMove() throws {
+    @Test
+    func `Mouse move: ESC [ < 35 ; 10 ; 20 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x33, 0x35, 0x3B,               // 35 (32 + 3) ;
@@ -113,8 +113,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .move, column: 10, row: 20)))
     }
 
-    @Test("Shift+Left press: ESC [ < 4 ; 1 ; 1 M")
-    func shiftLeftPress() throws {
+    @Test
+    func `Shift+Left press: ESC [ < 4 ; 1 ; 1 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x34, 0x3B,                      // 4 (shift + left) ;
@@ -125,8 +125,8 @@ struct SGRMouseTests {
         #expect(event == .mouse(Mouse(kind: .press(.left), column: 1, row: 1, modifiers: .shift)))
     }
 
-    @Test("Ctrl+Left press: ESC [ < 16 ; 1 ; 1 M")
-    func ctrlLeftPress() throws {
+    @Test
+    func `Ctrl+Left press: ESC [ < 16 ; 1 ; 1 M`() throws {
         let event = try parse([
             0x1B, 0x5B, 0x3C,
             0x31, 0x36, 0x3B,               // 16 (ctrl + left) ;

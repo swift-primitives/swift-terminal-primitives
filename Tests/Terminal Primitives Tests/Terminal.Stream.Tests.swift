@@ -14,15 +14,15 @@ import Testing
 
 @Suite("Terminal.Stream Tests")
 struct StreamTests {
-    @Test("Stream raw values are correct")
-    func streamRawValues() {
+    @Test
+    func `Stream raw values are correct`() {
         #expect(Terminal.Stream.stdin.rawValue == 0)
         #expect(Terminal.Stream.stdout.rawValue == 1)
         #expect(Terminal.Stream.stderr.rawValue == 2)
     }
 
-    @Test("All streams can be iterated")
-    func streamIteration() {
+    @Test
+    func `All streams can be iterated`() {
         let streams = Terminal.Stream.allCases
         #expect(streams.count == 3)
         #expect(streams.contains(.stdin))
@@ -33,15 +33,15 @@ struct StreamTests {
 
 @Suite("Terminal.Size Tests")
 struct SizeTests {
-    @Test("Size can be created")
-    func sizeCreation() {
+    @Test
+    func `Size can be created`() {
         let size = Terminal.Size(rows: 24, columns: 80)
         #expect(size.rows == 24)
         #expect(size.columns == 80)
     }
 
-    @Test("Size is hashable")
-    func sizeHashable() {
+    @Test
+    func `Size is hashable`() {
         let size1 = Terminal.Size(rows: 24, columns: 80)
         let size2 = Terminal.Size(rows: 24, columns: 80)
         let size3 = Terminal.Size(rows: 25, columns: 80)

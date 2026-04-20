@@ -17,29 +17,29 @@ import Terminal_Input_Primitives
 @Suite("Terminal.Input.Key")
 struct KeyTests {
 
-    @Test("Key equality with same code and modifiers")
-    func keyEquality() {
+    @Test
+    func `Key equality with same code and modifiers`() {
         let key1 = Key(code: .character("a"), modifiers: .control)
         let key2 = Key(code: .character("a"), modifiers: .control)
         #expect(key1 == key2)
     }
 
-    @Test("Key inequality with different modifiers")
-    func keyInequalityModifiers() {
+    @Test
+    func `Key inequality with different modifiers`() {
         let key1 = Key(code: .character("a"), modifiers: .control)
         let key2 = Key(code: .character("a"), modifiers: .alt)
         #expect(key1 != key2)
     }
 
-    @Test("Key inequality with different codes")
-    func keyInequalityCodes() {
+    @Test
+    func `Key inequality with different codes`() {
         let key1 = Key(code: .character("a"))
         let key2 = Key(code: .character("b"))
         #expect(key1 != key2)
     }
 
-    @Test("Default modifiers are empty")
-    func defaultModifiers() {
+    @Test
+    func `Default modifiers are empty`() {
         let key = Key(code: .enter)
         #expect(key.modifiers == [])
         #expect(key.text == nil)
@@ -52,8 +52,8 @@ struct KeyTests {
 @Suite("Terminal.Input.Key.Modifiers")
 struct ModifiersTests {
 
-    @Test("Single modifier flags")
-    func singleFlags() {
+    @Test
+    func `Single modifier flags`() {
         #expect(Key.Modifiers.shift.rawValue == 1)
         #expect(Key.Modifiers.alt.rawValue == 2)
         #expect(Key.Modifiers.control.rawValue == 4)
@@ -64,8 +64,8 @@ struct ModifiersTests {
         #expect(Key.Modifiers.numLock.rawValue == 128)
     }
 
-    @Test("Modifier combination")
-    func combination() {
+    @Test
+    func `Modifier combination`() {
         let mods: Key.Modifiers = [.shift, .control]
         #expect(mods.contains(.shift))
         #expect(mods.contains(.control))
@@ -73,22 +73,22 @@ struct ModifiersTests {
         #expect(mods.rawValue == 5)
     }
 
-    @Test("Empty modifiers")
-    func empty() {
+    @Test
+    func `Empty modifiers`() {
         let mods = Key.Modifiers()
         #expect(mods.isEmpty)
         #expect(mods.rawValue == 0)
     }
 
-    @Test("Modifiers are hashable")
-    func hashable() {
+    @Test
+    func `Modifiers are hashable`() {
         let a: Key.Modifiers = [.shift, .control]
         let b: Key.Modifiers = [.shift, .control]
         #expect(a.hashValue == b.hashValue)
     }
 
-    @Test("CSI modifier encoding: value = 1 + bits")
-    func csiEncoding() {
+    @Test
+    func `CSI modifier encoding: value = 1 + bits`() {
         // Shift: CSI param = 2 (1 + 1)
         // Alt: CSI param = 3 (1 + 2)
         // Ctrl: CSI param = 5 (1 + 4)
@@ -105,29 +105,29 @@ struct ModifiersTests {
 @Suite("Terminal.Input.Mouse")
 struct MouseTypeTests {
 
-    @Test("Mouse equality")
-    func mouseEquality() {
+    @Test
+    func `Mouse equality`() {
         let m1 = Mouse(kind: .press(.left), column: 10, row: 20)
         let m2 = Mouse(kind: .press(.left), column: 10, row: 20)
         #expect(m1 == m2)
     }
 
-    @Test("Mouse inequality different position")
-    func mouseInequalityPosition() {
+    @Test
+    func `Mouse inequality different position`() {
         let m1 = Mouse(kind: .press(.left), column: 10, row: 20)
         let m2 = Mouse(kind: .press(.left), column: 11, row: 20)
         #expect(m1 != m2)
     }
 
-    @Test("Mouse inequality different button")
-    func mouseInequalityButton() {
+    @Test
+    func `Mouse inequality different button`() {
         let m1 = Mouse(kind: .press(.left), column: 10, row: 20)
         let m2 = Mouse(kind: .press(.right), column: 10, row: 20)
         #expect(m1 != m2)
     }
 
-    @Test("Default mouse modifiers are empty")
-    func defaultModifiers() {
+    @Test
+    func `Default mouse modifiers are empty`() {
         let mouse = Mouse(kind: .press(.left), column: 1, row: 1)
         #expect(mouse.modifiers == [])
     }
@@ -138,29 +138,29 @@ struct MouseTypeTests {
 @Suite("Terminal.Input.Event")
 struct EventTypeTests {
 
-    @Test("Event equality for key events")
-    func keyEquality() {
+    @Test
+    func `Event equality for key events`() {
         let e1: Event = .key(Key(code: .enter))
         let e2: Event = .key(Key(code: .enter))
         #expect(e1 == e2)
     }
 
-    @Test("Event inequality between key and mouse")
-    func keyMouseInequality() {
+    @Test
+    func `Event inequality between key and mouse`() {
         let key: Event = .key(Key(code: .enter))
         let mouse: Event = .mouse(Mouse(kind: .press(.left), column: 1, row: 1))
         #expect(key != mouse)
     }
 
-    @Test("Resize event equality")
-    func resizeEquality() {
+    @Test
+    func `Resize event equality`() {
         let e1: Event = .resize(Terminal.Size(rows: 24, columns: 80))
         let e2: Event = .resize(Terminal.Size(rows: 24, columns: 80))
         #expect(e1 == e2)
     }
 
-    @Test("Paste event equality")
-    func pasteEquality() {
+    @Test
+    func `Paste event equality`() {
         let e1: Event = .paste("hello")
         let e2: Event = .paste("hello")
         #expect(e1 == e2)

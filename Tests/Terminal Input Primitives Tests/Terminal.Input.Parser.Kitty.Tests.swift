@@ -17,8 +17,8 @@ import Terminal_Input_Primitives
 @Suite("Parser — Kitty Keyboard")
 struct KittyKeyboardTests {
 
-    @Test("Ctrl+a: ESC [ 97 ; 5 u")
-    func ctrlA() throws {
+    @Test
+    func `Ctrl+a: ESC [ 97 ; 5 u`() throws {
         let event = try parse([0x1B, 0x5B, 0x39, 0x37, 0x3B, 0x35, 0x75])
         #expect(event == .key(Key(
             code: .character("a"),
@@ -27,8 +27,8 @@ struct KittyKeyboardTests {
         )))
     }
 
-    @Test("Simple 'a' key: ESC [ 97 u")
-    func simpleA() throws {
+    @Test
+    func `Simple 'a' key: ESC [ 97 u`() throws {
         let event = try parse([0x1B, 0x5B, 0x39, 0x37, 0x75])
         #expect(event == .key(Key(
             code: .character("a"),
@@ -36,28 +36,28 @@ struct KittyKeyboardTests {
         )))
     }
 
-    @Test("Enter in Kitty: ESC [ 13 u")
-    func kittyEnter() throws {
+    @Test
+    func `Enter in Kitty: ESC [ 13 u`() throws {
         // 13 = 0x31 0x33
         let event = try parse([0x1B, 0x5B, 0x31, 0x33, 0x75])
         #expect(event == .key(Key(code: .enter)))
     }
 
-    @Test("Tab in Kitty: ESC [ 9 u")
-    func kittyTab() throws {
+    @Test
+    func `Tab in Kitty: ESC [ 9 u`() throws {
         let event = try parse([0x1B, 0x5B, 0x39, 0x75])
         #expect(event == .key(Key(code: .tab)))
     }
 
-    @Test("Escape in Kitty: ESC [ 27 u")
-    func kittyEscape() throws {
+    @Test
+    func `Escape in Kitty: ESC [ 27 u`() throws {
         // 27 = 0x32 0x37
         let event = try parse([0x1B, 0x5B, 0x32, 0x37, 0x75])
         #expect(event == .key(Key(code: .escape)))
     }
 
-    @Test("Kitty key release: ESC [ 97 ; 1 : 3 u")
-    func kittyRelease() throws {
+    @Test
+    func `Kitty key release: ESC [ 97 ; 1 : 3 u`() throws {
         // 97;1:3u → codepoint 97 ('a'), modifiers 1 (none), event_type 3 (release)
         let event = try parse([
             0x1B, 0x5B,
@@ -73,8 +73,8 @@ struct KittyKeyboardTests {
         )))
     }
 
-    @Test("Kitty key repeat: ESC [ 97 ; 1 : 2 u")
-    func kittyRepeat() throws {
+    @Test
+    func `Kitty key repeat: ESC [ 97 ; 1 : 2 u`() throws {
         let event = try parse([
             0x1B, 0x5B,
             0x39, 0x37, 0x3B,       // 97 ;
@@ -89,8 +89,8 @@ struct KittyKeyboardTests {
         )))
     }
 
-    @Test("Kitty functional key (private use area)")
-    func kittyFunctional() throws {
+    @Test
+    func `Kitty functional key (private use area)`() throws {
         // 57344 = 0xE000 (first Kitty functional key)
         // "57344" as ASCII bytes: 0x35 0x37 0x33 0x34 0x34
         let event = try parse([
@@ -101,8 +101,8 @@ struct KittyKeyboardTests {
         #expect(event == .key(Key(code: .kitty(57344))))
     }
 
-    @Test("Shift+a: ESC [ 97 ; 2 u")
-    func shiftA() throws {
+    @Test
+    func `Shift+a: ESC [ 97 ; 2 u`() throws {
         let event = try parse([0x1B, 0x5B, 0x39, 0x37, 0x3B, 0x32, 0x75])
         #expect(event == .key(Key(
             code: .character("a"),
