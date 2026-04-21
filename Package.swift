@@ -12,6 +12,11 @@ let package = Package(
         .visionOS(.v26)
     ],
     products: [
+        // MARK: - Namespace
+        .library(
+            name: "Terminal Namespace",
+            targets: ["Terminal Namespace"]
+        ),
         .library(
             name: "Terminal Primitives",
             targets: ["Terminal Primitives"]
@@ -35,10 +40,17 @@ let package = Package(
         .package(path: "../swift-ascii-primitives"),
     ],
     targets: [
+        // MARK: - Namespace
+        .target(
+            name: "Terminal Namespace",
+            dependencies: []
+        ),
+
         // MARK: - Core
         .target(
             name: "Terminal Primitives Core",
             dependencies: [
+                "Terminal Namespace",
                 .product(name: "Kernel Terminal Primitives", package: "swift-kernel-primitives"),
                 .product(name: "Kernel Error Primitives", package: "swift-kernel-primitives"),
             ]
@@ -58,6 +70,7 @@ let package = Package(
         .target(
             name: "Terminal Primitives",
             dependencies: [
+                "Terminal Namespace",
                 "Terminal Primitives Core",
                 "Terminal Input Primitives",
             ]

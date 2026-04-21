@@ -9,5 +9,6 @@
 //
 // ===----------------------------------------------------------------------===//
 
+@_exported public import Terminal_Namespace
 @_exported public import Kernel_Terminal_Primitives
 @_exported public import Kernel_Error_Primitives
