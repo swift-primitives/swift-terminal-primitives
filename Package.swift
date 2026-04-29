@@ -38,6 +38,7 @@ let package = Package(
         .package(path: "../swift-kernel-primitives"),
         .package(path: "../swift-input-primitives"),
         .package(path: "../swift-ascii-primitives"),
+        .package(path: "../swift-error-primitives"),
     ],
     targets: [
         // MARK: - Namespace
@@ -52,7 +53,7 @@ let package = Package(
             dependencies: [
                 "Terminal Namespace",
                 .product(name: "Kernel Terminal Primitives", package: "swift-kernel-primitives"),
-                .product(name: "Kernel Error Primitives", package: "swift-kernel-primitives"),
+                .product(name: "Error Primitives", package: "swift-error-primitives"),
             ]
         ),
 

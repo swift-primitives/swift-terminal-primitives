@@ -9,7 +9,7 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Kernel_Error_Primitives
+public import Error_Primitives
 
 extension Terminal {
     /// Terminal operation error.
@@ -51,10 +51,10 @@ extension Terminal.Error {
     /// Underlying error cause.
     public enum Underlying: Sendable {
         /// Kernel-level error.
-        case kernel(Kernel.Error)
+        case kernel(Error_Primitives.Error)
 
         /// Platform-specific error (e.g., Windows Console API failure).
-        case platform(Kernel.Error)
+        case platform(Error_Primitives.Error)
 
         /// Operation not supported on this platform.
         case unsupported
