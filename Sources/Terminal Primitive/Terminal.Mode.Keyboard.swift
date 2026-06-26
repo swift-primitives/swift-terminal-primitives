@@ -9,5 +9,12 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Terminal_Error_Primitives
-@_exported public import Terminal_Primitive
+extension Terminal.Mode {
+    /// Kitty keyboard protocol escape sequences.
+    public enum Keyboard {
+        /// Enable with disambiguate flag (flags=1).
+        public static let enable: Swift.String = "\u{1B}[>1u"
+        /// Disable (pop keyboard mode).
+        public static let disable: Swift.String = "\u{1B}[<u"
+    }
+}

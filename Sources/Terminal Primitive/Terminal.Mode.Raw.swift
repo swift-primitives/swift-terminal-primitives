@@ -15,23 +15,15 @@ extension Terminal.Mode {
     /// Raw mode disables line buffering, echo, and signal processing,
     /// allowing character-by-character input.
     public struct Raw: Sendable {
-        internal let stream: Terminal.Stream
+        /// The stream this raw mode instance is for.
+        public let stream: Terminal.Stream
 
-        internal init(stream: Terminal.Stream) {
+        /// Creates a raw mode instance for the given stream.
+        public init(stream: Terminal.Stream) {
             self.stream = stream
         }
     }
 }
 
-extension Terminal.Mode.Raw {
-    /// Enter raw mode on this stream.
-    ///
-    /// Returns a token that must be used to restore the previous mode.
-    /// The token will attempt to restore on deinit if not explicitly restored.
-    ///
-    /// - Returns: A token to restore the previous terminal mode
-    /// - Throws: ``Terminal.Error`` if entering raw mode fails
-    public func enter() throws(Terminal.Error) -> Token {
-        try Terminal.Backend.enterRaw(stream: stream)
-    }
-}
+// Note: `enter()` method is provided via extension in swift-iso-9945 (POSIX)
+// or swift-windows-primitives (Windows)

@@ -17,7 +17,7 @@
 /// - ``Mode`` - Terminal mode control (raw/cooked)
 ///
 /// These compose over ``Kernel.TTY`` and ``Kernel.Termios`` (POSIX) or
-/// ``Kernel.Console`` (Windows) without exposing platform-specific APIs
+/// Windows Console API (via `swift-windows-primitives`) without exposing platform-specific APIs
 /// to callers.
 ///
 /// ## Example
@@ -29,9 +29,11 @@
 ///     let size = try Terminal.Size.query()
 ///     print("Terminal is \(size.columns)x\(size.rows)")
 ///
-///     // Enter raw mode
+///     // Enter raw mode; restore it on the way out.
 ///     let token = try Terminal.Stream.stdin.mode.raw.enter()
-///     defer { try? token.restore() }
+///     defer {
+///         do throws(Terminal.Error) { try token.restore() } catch {}
+///     }
 ///     // Read single keystrokes...
 /// }
 /// ```

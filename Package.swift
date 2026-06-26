@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3.1
 
 import PackageDescription
 
@@ -9,42 +9,89 @@ let package = Package(
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
-        .visionOS(.v26),
+        .visionOS(.v26)
     ],
     products: [
+        // MARK: - Namespace
+        .library(
+            name: "Terminal Primitive",
+            targets: ["Terminal Primitive"]
+        ),
+        .library(
+            name: "Terminal Error Primitives",
+            targets: ["Terminal Error Primitives"]
+        ),
         .library(
             name: "Terminal Primitives",
             targets: ["Terminal Primitives"]
         ),
+        .library(
+            name: "Terminal Primitives Test Support",
+            targets: ["Terminal Primitives Test Support"]
+        ),
     ],
     dependencies: [
-        .package(path: "../swift-kernel-primitives"),
-        .package(path: "../swift-test-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-error-primitives.git", branch: "main"),
     ],
     targets: [
+        // MARK: - Namespace
+        .target(
+            name: "Terminal Primitive",
+            dependencies: []
+        ),
+
+        // MARK: - Error
+        .target(
+            name: "Terminal Error Primitives",
+            dependencies: [
+                "Terminal Primitive",
+                .product(name: "Error Primitives", package: "swift-error-primitives"),
+            ]
+        ),
+
+        // MARK: - Umbrella
         .target(
             name: "Terminal Primitives",
             dependencies: [
-                .product(name: "Kernel Primitives", package: "swift-kernel-primitives"),
+                "Terminal Primitive",
+                "Terminal Error Primitives",
             ]
         ),
         .testTarget(
             name: "Terminal Primitives Tests",
             dependencies: [
+                "Terminal Primitive",
                 "Terminal Primitives",
-                .product(name: "Test Primitives", package: "swift-test-primitives"),
+            ]
+        ),
+
+        // MARK: - Test Support
+        .target(
+            name: "Terminal Primitives Test Support",
+            dependencies: [
+                "Terminal Primitives",
             ],
-            path: "Tests/Terminal Primitives Tests"
+            path: "Tests/Support"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
-    let settings: [SwiftSetting] = [
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
+    let ecosystem: [SwiftSetting] = [
+        .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableExperimentalFeature("LifetimeDependence"),
+        .enableExperimentalFeature("Lifetimes"),
+        .enableExperimentalFeature("SuppressedAssociatedTypes"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableUpcomingFeature("LifetimeDependence"),
     ]
-    target.swiftSettings = (target.swiftSettings ?? []) + settings
+
+    let package: [SwiftSetting] = []
+
+    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

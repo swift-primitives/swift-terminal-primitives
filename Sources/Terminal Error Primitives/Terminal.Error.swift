@@ -9,7 +9,8 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Kernel_Primitives
+public import Error_Primitives
+public import Terminal_Primitive
 
 extension Terminal {
     /// Terminal operation error.
@@ -51,10 +52,10 @@ extension Terminal.Error {
     /// Underlying error cause.
     public enum Underlying: Sendable {
         /// Kernel-level error.
-        case kernel(Kernel.Error)
+        case kernel(Error_Primitives.Error)
 
-        /// Windows console error.
-        case console(Kernel.Console.Error)
+        /// Platform-specific error (e.g., Windows Console API failure).
+        case platform(Error_Primitives.Error)
 
         /// Operation not supported on this platform.
         case unsupported
@@ -62,12 +63,15 @@ extension Terminal.Error {
 }
 
 extension Terminal.Error: CustomStringConvertible {
-    public var description: String {
+    /// A human-readable description of the failed operation and its cause.
+    public var description: Swift.String {
         switch underlying {
         case .kernel(let error):
             return "Terminal.\(operation): \(error)"
-        case .console(let error):
+
+        case .platform(let error):
             return "Terminal.\(operation): \(error)"
+
         case .unsupported:
             return "Terminal.\(operation): not supported on this platform"
         }

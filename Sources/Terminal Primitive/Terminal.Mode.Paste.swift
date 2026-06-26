@@ -9,5 +9,13 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Terminal_Error_Primitives
-@_exported public import Terminal_Primitive
+extension Terminal.Mode {
+    /// Bracketed paste mode escape sequences (mode 2004).
+    public enum Paste {
+        /// Escape sequence that enables bracketed paste mode.
+        public static let enable: Swift.String = "\u{1B}[?2004h"
+
+        /// Escape sequence that disables bracketed paste mode.
+        public static let disable: Swift.String = "\u{1B}[?2004l"
+    }
+}

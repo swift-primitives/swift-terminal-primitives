@@ -9,5 +9,10 @@
 //
 // ===----------------------------------------------------------------------===//
 
-@_exported public import Terminal_Error_Primitives
-@_exported public import Terminal_Primitive
+// Platform implementations are provided via extension in:
+// - swift-iso-9945 (POSIX: macOS, Linux, etc.)
+// - swift-windows-primitives (Windows)
+//
+// This file is intentionally minimal - it only defines the namespace.
+// The actual implementations (isInteractive, size, enterRaw, exitRaw)
+// are added by the platform layer.
