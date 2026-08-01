@@ -16,7 +16,7 @@ extension Terminal.Mode.Mouse {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
@@ -66,7 +66,7 @@ extension Terminal.Mode.Mouse.Test.Unit {
 
 // MARK: - EdgeCase
 
-extension Terminal.Mode.Mouse.Test.EdgeCase {
+extension Terminal.Mode.Mouse.Test.`Edge Case` {
     @Test
     func `Enable sequences end with h`() {
         #expect(Terminal.Mode.Mouse.Normal.enable.hasSuffix("h"))

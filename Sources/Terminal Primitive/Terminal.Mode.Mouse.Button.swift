@@ -9,14 +9,15 @@
 //
 // ===----------------------------------------------------------------------===//
 
-extension Terminal.Mode {
-    /// Kitty keyboard protocol escape sequences.
-    public enum Keyboard {}
+extension Terminal.Mode.Mouse {
+    /// Button-event tracking: press, release, and drag (mode 1002).
+    public enum Button {}
 }
 
-extension Terminal.Mode.Keyboard {
-    /// Enable with disambiguate flag (flags=1).
-    public static let enable: Swift.String = "\u{1B}[>1u"
-    /// Disable (pop keyboard mode).
-    public static let disable: Swift.String = "\u{1B}[<u"
+extension Terminal.Mode.Mouse.Button {
+    /// Escape sequence that enables button-event (drag) mouse tracking.
+    public static let enable: Swift.String = "\u{1B}[?1002h"
+
+    /// Escape sequence that disables button-event mouse tracking.
+    public static let disable: Swift.String = "\u{1B}[?1002l"
 }

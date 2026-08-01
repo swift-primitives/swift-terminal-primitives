@@ -16,7 +16,7 @@ extension Terminal.Mode.Keyboard {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
@@ -36,7 +36,7 @@ extension Terminal.Mode.Keyboard.Test.Unit {
 
 // MARK: - EdgeCase
 
-extension Terminal.Mode.Keyboard.Test.EdgeCase {
+extension Terminal.Mode.Keyboard.Test.`Edge Case` {
     @Test
     func `Sequences use CSI prefix without private mode marker`() {
         // Kitty uses CSI > and CSI < instead of CSI ?

@@ -9,7 +9,6 @@
 //
 // ===----------------------------------------------------------------------===//
 
-public import Error_Primitives
 public import Terminal_Primitive
 
 extension Terminal {
@@ -28,37 +27,6 @@ extension Terminal {
             self.operation = operation
             self.underlying = underlying
         }
-    }
-}
-
-extension Terminal.Error {
-    /// Terminal operations that can fail.
-    public enum Operation: Sendable, Hashable {
-        /// Querying terminal size.
-        case querySize
-
-        /// Entering raw mode.
-        case enterRaw
-
-        /// Exiting raw mode (restoring).
-        case exitRaw
-
-        /// Enabling VT processing (Windows).
-        case enableVT
-    }
-}
-
-extension Terminal.Error {
-    /// Underlying error cause.
-    public enum Underlying: Sendable {
-        /// Kernel-level error.
-        case kernel(Error_Primitives.Error)
-
-        /// Platform-specific error (e.g., Windows Console API failure).
-        case platform(Error_Primitives.Error)
-
-        /// Operation not supported on this platform.
-        case unsupported
     }
 }
 

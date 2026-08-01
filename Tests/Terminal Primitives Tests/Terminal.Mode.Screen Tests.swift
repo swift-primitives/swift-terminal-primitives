@@ -16,7 +16,7 @@ extension Terminal.Mode.Screen {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
@@ -36,7 +36,7 @@ extension Terminal.Mode.Screen.Test.Unit {
 
 // MARK: - EdgeCase
 
-extension Terminal.Mode.Screen.Test.EdgeCase {
+extension Terminal.Mode.Screen.Test.`Edge Case` {
     @Test
     func `Enable and disable differ only in final byte`() {
         #expect(Terminal.Mode.Screen.enable.dropLast() == Terminal.Mode.Screen.disable.dropLast())

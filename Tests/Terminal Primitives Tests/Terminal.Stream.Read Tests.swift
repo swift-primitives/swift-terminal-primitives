@@ -16,7 +16,7 @@ extension Terminal.Stream.Read {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
@@ -50,7 +50,7 @@ extension Terminal.Stream.Read.Test.Unit {
 
 // MARK: - EdgeCase
 
-extension Terminal.Stream.Read.Test.EdgeCase {
+extension Terminal.Stream.Read.Test.`Edge Case` {
     @Test
     func `Each stream produces distinct Read accessor`() {
         let stdinRead = Terminal.Stream.stdin.read

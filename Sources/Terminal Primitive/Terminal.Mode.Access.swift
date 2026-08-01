@@ -10,13 +10,19 @@
 // ===----------------------------------------------------------------------===//
 
 extension Terminal.Mode {
-    /// Kitty keyboard protocol escape sequences.
-    public enum Keyboard {}
+    /// Mode operations accessor for a specific stream.
+    public struct Access: Sendable {
+        internal let stream: Terminal.Stream
+
+        internal init(stream: Terminal.Stream) {
+            self.stream = stream
+        }
+    }
 }
 
-extension Terminal.Mode.Keyboard {
-    /// Enable with disambiguate flag (flags=1).
-    public static let enable: Swift.String = "\u{1B}[>1u"
-    /// Disable (pop keyboard mode).
-    public static let disable: Swift.String = "\u{1B}[<u"
+extension Terminal.Mode.Access {
+    /// Raw mode accessor.
+    public var raw: Terminal.Mode.Raw {
+        Terminal.Mode.Raw(stream: stream)
+    }
 }

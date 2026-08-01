@@ -9,14 +9,19 @@
 //
 // ===----------------------------------------------------------------------===//
 
-extension Terminal {
-    /// Terminal mode operations namespace.
-    public enum Mode {}
-}
+public import Error_Primitives
+public import Terminal_Primitive
 
-extension Terminal.Stream {
-    /// Accessor for mode operations on this stream.
-    public var mode: Terminal.Mode.Access {
-        Terminal.Mode.Access(stream: self)
+extension Terminal.Error {
+    /// Underlying error cause.
+    public enum Underlying: Sendable {
+        /// Kernel-level error.
+        case kernel(Error_Primitives.Error)
+
+        /// Platform-specific error (e.g., Windows Console API failure).
+        case platform(Error_Primitives.Error)
+
+        /// Operation not supported on this platform.
+        case unsupported
     }
 }

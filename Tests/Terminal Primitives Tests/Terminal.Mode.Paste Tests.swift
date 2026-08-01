@@ -16,7 +16,7 @@ extension Terminal.Mode.Paste {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
@@ -36,7 +36,7 @@ extension Terminal.Mode.Paste.Test.Unit {
 
 // MARK: - EdgeCase
 
-extension Terminal.Mode.Paste.Test.EdgeCase {
+extension Terminal.Mode.Paste.Test.`Edge Case` {
     @Test
     func `Enable and disable differ only in final byte`() {
         #expect(Terminal.Mode.Paste.enable.dropLast() == Terminal.Mode.Paste.disable.dropLast())

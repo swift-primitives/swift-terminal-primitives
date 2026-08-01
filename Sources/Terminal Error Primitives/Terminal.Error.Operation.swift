@@ -9,14 +9,21 @@
 //
 // ===----------------------------------------------------------------------===//
 
-extension Terminal.Mode {
-    /// Kitty keyboard protocol escape sequences.
-    public enum Keyboard {}
-}
+public import Terminal_Primitive
 
-extension Terminal.Mode.Keyboard {
-    /// Enable with disambiguate flag (flags=1).
-    public static let enable: Swift.String = "\u{1B}[>1u"
-    /// Disable (pop keyboard mode).
-    public static let disable: Swift.String = "\u{1B}[<u"
+extension Terminal.Error {
+    /// Terminal operations that can fail.
+    public enum Operation: Sendable, Hashable {
+        /// Querying terminal size.
+        case querySize
+
+        /// Entering raw mode.
+        case enterRaw
+
+        /// Exiting raw mode (restoring).
+        case exitRaw
+
+        /// Enabling VT processing (Windows).
+        case enableVT
+    }
 }

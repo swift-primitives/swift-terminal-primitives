@@ -13,8 +13,13 @@ import Testing
 
 @testable import Terminal_Primitive
 
-@Suite("Terminal.Stream Tests")
-struct StreamTests {
+@Suite struct `Terminal.Stream Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Terminal.Stream Tests`.Unit {
     @Test
     func `Stream raw values are correct`() {
         #expect(Terminal.Stream.stdin.rawValue == 0)
@@ -32,8 +37,13 @@ struct StreamTests {
     }
 }
 
-@Suite("Terminal.Size Tests")
-struct SizeTests {
+@Suite struct `Terminal.Size Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+}
+
+extension `Terminal.Size Tests`.Unit {
     @Test
     func `Size can be created`() {
         let size = Terminal.Size(rows: 24, columns: 80)
