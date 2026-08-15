@@ -13,10 +13,6 @@ extension Terminal.Mode {
     /// Mode operations accessor for a specific stream.
     public struct Access: Sendable {
         internal let stream: Terminal.Stream
-
-        internal init(stream: Terminal.Stream) {
-            self.stream = stream
-        }
     }
 }
 
