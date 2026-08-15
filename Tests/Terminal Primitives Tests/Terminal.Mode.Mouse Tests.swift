@@ -85,10 +85,20 @@ extension Terminal.Mode.Mouse.Test.`Edge Case` {
 
     @Test
     func `Enable and disable differ only in final byte`() {
-        #expect(Terminal.Mode.Mouse.Normal.enable.dropLast() == Terminal.Mode.Mouse.Normal.disable.dropLast())
-        #expect(Terminal.Mode.Mouse.Button.enable.dropLast() == Terminal.Mode.Mouse.Button.disable.dropLast())
-        #expect(Terminal.Mode.Mouse.Any.enable.dropLast() == Terminal.Mode.Mouse.Any.disable.dropLast())
-        #expect(Terminal.Mode.Mouse.SGR.enable.dropLast() == Terminal.Mode.Mouse.SGR.disable.dropLast())
+        #expect(
+            Terminal.Mode.Mouse.Normal.enable.dropLast()
+                == Terminal.Mode.Mouse.Normal.disable.dropLast()
+        )
+        #expect(
+            Terminal.Mode.Mouse.Button.enable.dropLast()
+                == Terminal.Mode.Mouse.Button.disable.dropLast()
+        )
+        #expect(
+            Terminal.Mode.Mouse.Any.enable.dropLast() == Terminal.Mode.Mouse.Any.disable.dropLast()
+        )
+        #expect(
+            Terminal.Mode.Mouse.SGR.enable.dropLast() == Terminal.Mode.Mouse.SGR.disable.dropLast()
+        )
     }
 
     @Test
