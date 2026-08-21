@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-terminal-primitives open source project
-//
-// Copyright (c) 2024 Coen ten Thije Boonkkamp and the swift-terminal-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Terminal_Primitives
 import Testing
 
@@ -19,8 +8,6 @@ extension Terminal.Stream.Read {
         @Suite struct `Edge Case` {}
     }
 }
-
-// MARK: - Unit
 
 extension Terminal.Stream.Read.Test.Unit {
     @Test
@@ -47,8 +34,6 @@ extension Terminal.Stream.Read.Test.Unit {
         #expect(read.stream == .stderr)
     }
 }
-
-// MARK: - EdgeCase
 
 extension Terminal.Stream.Read.Test.`Edge Case` {
     @Test

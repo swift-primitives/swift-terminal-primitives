@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-terminal-primitives open source project
-//
-// Copyright (c) 2024 Coen ten Thije Boonkkamp and the swift-terminal-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Terminal_Primitives
 import Testing
 
@@ -19,8 +8,6 @@ extension Terminal.Mode.Screen {
         @Suite struct `Edge Case` {}
     }
 }
-
-// MARK: - Unit
 
 extension Terminal.Mode.Screen.Test.Unit {
     @Test
@@ -33,8 +20,6 @@ extension Terminal.Mode.Screen.Test.Unit {
         #expect(Terminal.Mode.Screen.disable == "\u{1B}[?1049l")
     }
 }
-
-// MARK: - EdgeCase
 
 extension Terminal.Mode.Screen.Test.`Edge Case` {
     @Test

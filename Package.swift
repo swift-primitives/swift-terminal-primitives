@@ -12,7 +12,7 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // MARK: - Namespace
+
         .library(
             name: "Terminal Primitive",
             targets: ["Terminal Primitive"]
@@ -37,13 +37,12 @@ let package = Package(
         )
     ],
     targets: [
-        // MARK: - Namespace
+
         .target(
             name: "Terminal Primitive",
             dependencies: []
         ),
 
-        // MARK: - Error
         .target(
             name: "Terminal Error Primitives",
             dependencies: [
@@ -52,7 +51,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
         .target(
             name: "Terminal Primitives",
             dependencies: [
@@ -68,7 +66,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Test Support
         .target(
             name: "Terminal Primitives Test Support",
             dependencies: [

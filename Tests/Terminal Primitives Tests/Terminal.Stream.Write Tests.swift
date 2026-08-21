@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-terminal-primitives open source project
-//
-// Copyright (c) 2026 Coen ten Thije Boonkkamp and the swift-terminal-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Terminal_Primitives
 import Testing
 
@@ -36,8 +25,7 @@ extension Terminal.Stream.Write.Test.Unit {
 
     @Test
     func `write accessor available for stdin (FD only; semantics undefined)`() {
-        // The accessor is uniform across all streams; semantic validity of
-        // writing to stdin is the L2 / consumer's responsibility.
+
         let stream = Terminal.Stream.stdin
         let write = stream.write
         #expect(write.stream == .stdin)

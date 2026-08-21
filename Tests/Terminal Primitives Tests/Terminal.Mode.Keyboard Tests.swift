@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-terminal-primitives open source project
-//
-// Copyright (c) 2024 Coen ten Thije Boonkkamp and the swift-terminal-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Terminal_Primitives
 import Testing
 
@@ -19,8 +8,6 @@ extension Terminal.Mode.Keyboard {
         @Suite struct `Edge Case` {}
     }
 }
-
-// MARK: - Unit
 
 extension Terminal.Mode.Keyboard.Test.Unit {
     @Test
@@ -34,12 +21,10 @@ extension Terminal.Mode.Keyboard.Test.Unit {
     }
 }
 
-// MARK: - EdgeCase
-
 extension Terminal.Mode.Keyboard.Test.`Edge Case` {
     @Test
     func `Sequences use CSI prefix without private mode marker`() {
-        // Kitty uses CSI > and CSI < instead of CSI ?
+
         #expect(Terminal.Mode.Keyboard.enable.hasPrefix("\u{1B}[>"))
         #expect(Terminal.Mode.Keyboard.disable.hasPrefix("\u{1B}[<"))
     }

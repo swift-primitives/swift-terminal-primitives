@@ -1,14 +1,3 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-terminal-primitives open source project
-//
-// Copyright (c) 2024 Coen ten Thije Boonkkamp and the swift-terminal-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Terminal_Primitives
 import Testing
 
@@ -19,8 +8,6 @@ extension Terminal.Mode.Paste {
         @Suite struct `Edge Case` {}
     }
 }
-
-// MARK: - Unit
 
 extension Terminal.Mode.Paste.Test.Unit {
     @Test
@@ -33,8 +20,6 @@ extension Terminal.Mode.Paste.Test.Unit {
         #expect(Terminal.Mode.Paste.disable == "\u{1B}[?2004l")
     }
 }
-
-// MARK: - EdgeCase
 
 extension Terminal.Mode.Paste.Test.`Edge Case` {
     @Test
